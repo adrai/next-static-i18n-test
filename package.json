@@ -6,7 +6,9 @@
     "postbuild": "node ./scripts/generate-rss.mjs && node ./scripts/generate-sitemap.mjs",
     "dev": "next dev",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export",
+    "out": "npm run build && npm run export"
   },
   "dependencies": {
     "@tailwindcss/typography": "0.4.1",
@@ -17,9 +19,9 @@
     "mdx-bundler": "^6.0.1",
     "micro-cookie-session": "2.0.0-beta.1",
     "next": "11.1",
+    "next-i18next": "8.6.0",
     "next-themes": "0.0.15",
     "planetscale-node": "0.1.0",
-    "preact": "10.5.14",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "0.5.6",
