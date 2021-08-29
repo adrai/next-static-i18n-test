@@ -3,6 +3,7 @@ import Link from 'next/link';
 import i18nextConfig from '../next-i18next.config'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import languageDetector from '../lib/languageDetector';
 
 // const ExternalLink = ({ href, children }) => (
 //   <a
@@ -62,7 +63,7 @@ export default function Footer(props) {
           {i18nextConfig.i18n.locales.map((locale) => {
             if (locale === currentLocale) return null;
             return (<Link key={locale} href={getCorrectHref(locale)}>
-              <a className="text-gray-500 hover:text-gray-600 transition">{locale}</a>
+              <a className="text-gray-500 hover:text-gray-600 transition" onClick={() => languageDetector.cacheUserLanguage(locale)}>{locale}</a>
             </Link>)
           })}
           {/* <Link href="/uses">

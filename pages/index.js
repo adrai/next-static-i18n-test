@@ -1,6 +1,7 @@
 import i18nextConfig from '../next-i18next.config'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import languageDetector from '../lib/languageDetector';
 
 export const getStaticProps = () => {
   const { locales, defaultLocale } = i18nextConfig.i18n
@@ -17,16 +18,14 @@ const Index = ({ locales }) => {
   const router = useRouter()
 
   // language detection
-  // not recommended for production, use server redirection instead of this
-  // maybe there is a possibility to use i18next-browser-language-detector ?
   useEffect(() => {
+    const detectedLng = languageDetector.detect()
     for (const locale of locales) {
       // eslint-disable-next-line no-undef
-      for (const lang of navigator.languages) {
-        if (lang.startsWith(locale)) {
-          router.replace('/' + locale)
-          return
-        }
+      if (detectedLng.startsWith(locale)) {
+        languageDetector.cacheUserLanguage(detectedLng)
+        router.replace('/' + locale)
+        return
       }
     }
   }, [])
