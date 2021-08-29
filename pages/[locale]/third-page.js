@@ -3,7 +3,6 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { getLocaleFile } from '@/lib/mdx';
 import components from '@/components/MDXComponents';
 import Container from '@/components/Container';
-import { StaticI18nLink } from '@/components/StaticI18nLink';
 import { getI18nPaths } from '@/lib/getI18nPaths'
 // import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import { useTranslation } from 'next-i18next'
@@ -23,14 +22,6 @@ export default function Test({ code, frontMatter }) {
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
         <div className="prose dark:prose-dark w-full">
           <Component components={components} />
-          <hr />
-          <StaticI18nLink href='/third-page'>
-            <button
-              type='button'
-            >
-              third page
-            </button>
-          </StaticI18nLink>
         </div>
       </article>
     </Container>

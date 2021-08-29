@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
-import { getFileBySlug } from '@/lib/mdx';
+import { getLocaleFile } from '@/lib/mdx';
 import components from '@/components/MDXComponents';
 import Container from '@/components/Container';
 import { StaticI18nLink } from '@/components/StaticI18nLink';
@@ -59,7 +59,7 @@ export async function getStaticProps(ctx) {
   return {
     props: {
       // if using markdown
-      ...await getFileBySlug(`locales/${ctx?.params?.locale}`, slug),
+      ...await getLocaleFile(ctx?.params?.locale, slug),
 
       // if using i18next here in react code
       ...await serverSideTranslations(ctx?.params?.locale, ['common', 'footer'], i18nextConfig),
