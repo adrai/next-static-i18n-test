@@ -2,8 +2,9 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
+    const currentLocale = this.props.__NEXT_DATA__.query.locale || 'en'
     return (
-      <Html lang="en">
+      <Html lang={currentLocale}>
         <Head>
           <link
             rel="preload"
