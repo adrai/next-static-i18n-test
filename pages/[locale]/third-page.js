@@ -10,7 +10,7 @@ import { getI18nPaths } from '@/lib/getI18nPaths'
 
 const slug = (new URL(import.meta.url).pathname.split("/").pop()).slice(0, -3)
 
-export default function Test({ code, frontMatter }) {
+export default function Test({ code, frontMatter, isInRequestedLanguage }) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   // const { t, i18n } = useTranslation('common')
 
@@ -19,6 +19,7 @@ export default function Test({ code, frontMatter }) {
       title={frontMatter.name}
       description="bla bla"
     >
+      {!isInRequestedLanguage && <span style={{ color: 'red' }}>This content is not available in you requested language right now...</span>}
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
         <div className="prose dark:prose-dark w-full">
           <Component components={components} />
