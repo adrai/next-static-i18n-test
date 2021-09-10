@@ -8,6 +8,7 @@ import { getI18nPaths } from '@/lib/getI18nPaths'
 // import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import { useTranslation } from 'next-i18next'
 // import i18nextConfig from '../../next-i18next.config' // used as current next-i18next workaround for next.js > v10.2
+import { hasCookieConsent } from '@/lib/analytics';
 
 const slug = (new URL(import.meta.url).pathname.split("/").pop()).slice(0, -3)
 
@@ -31,6 +32,21 @@ export default function Test({ code, frontMatter }) {
               third page
             </button>
           </StaticI18nLink>
+          <hr />
+          {hasCookieConsent() && (
+            <iframe
+              width="640"
+              height="360"
+              src="https://www.youtube-nocookie.com/embed/YQryHo1iHb8?rel=0&controls=0&showinfo=0"
+              frameBorder="0"
+              webkitallowfullscreen=""
+              mozallowfullscreen=""
+              allowFullScreen=""
+            />
+          )}
+          {!hasCookieConsent() && (
+            <a href="https://youtu.be/YQryHo1iHb8" >watch video</a>
+          )}
         </div>
       </article>
     </Container>

@@ -1,16 +1,14 @@
 import '@/styles/global.css';
 
 import { ThemeProvider } from 'next-themes';
-import { useAnalytics } from '@/lib/analytics';
+import { useAnalytics, cookieConsentName } from '@/lib/analytics';
 
 import { appWithTranslation } from 'next-i18next'
 
 import CookieConsent from 'react-cookie-consent';
 
-const cookieConsentName = 'cookieconsentStatus';
-
 function App({ Component, pageProps }) {
-  const enable = useAnalytics(cookieConsentName);
+  const [enabled, enable] = useAnalytics();
 
   return (
     <ThemeProvider attribute="class">
