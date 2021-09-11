@@ -1,4 +1,4 @@
-import { useRedirect } from '../lib/redirect';
+import { useRedirect } from '@/lib/redirect';
 
 const Index = () => {
   useRedirect()

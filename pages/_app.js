@@ -1,7 +1,7 @@
 import '@/styles/global.css';
 
 import { ThemeProvider } from 'next-themes';
-import { useAnalytics, cookieConsentName } from '@/lib/analytics';
+import { useAnalytics } from '@/lib/analytics';
 
 import { appWithTranslation } from 'next-i18next'
 
@@ -17,7 +17,7 @@ function App({ Component, pageProps }) {
         enableDeclineButton
         location="bottom"
         buttonText="Sure man!!"
-        cookieName={cookieConsentName}
+        cookieName={process.env.NEXT_PUBLIC_COOKIE_CONSENT_NAME}
         style={{ background: "#2B373B" }}
         buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
         expires={360}
