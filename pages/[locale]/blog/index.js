@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Container from '@/components/Container';
 import BlogPost from '@/components/BlogPost';
 import { getAllFilesFrontMatter } from '@/lib/mdx';
-import i18nConfig from '../../../next-i18next.config'
 import { getStaticPaths } from '@/lib/getStatic'
 
 export default function Blog({ posts }) {
@@ -97,5 +96,8 @@ export { getStaticPaths };
 export async function getStaticProps(ctx) {
   const posts = await getAllFilesFrontMatter(`locales/${ctx?.params?.locale}/blog`);
 
-  return { props: { posts } };
+  return { props: { posts: posts.map((p) => {
+    p.locale = ctx?.params?.locale
+    return p
+  }) } };
 }

@@ -3,12 +3,12 @@ import useSWR from 'swr';
 
 import fetcher from '@/lib/fetcher';
 
-const BlogPost = ({ title, summary, slug }) => {
+const BlogPost = ({ title, summary, slug, locale }) => {
   const { data } = useSWR(`/api/views/${slug}`, fetcher);
   const views = data?.total;
 
   return (
-    <Link href={`/blog/${slug}`}>
+    <Link href={`/${locale}/blog/${slug}`}>
       <a className="w-full">
         <div className="mb-8 w-full">
           <div className="flex flex-col md:flex-row justify-between">
