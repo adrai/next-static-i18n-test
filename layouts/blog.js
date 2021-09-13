@@ -6,16 +6,16 @@ import Subscribe from '@/components/Subscribe';
 import ViewCounter from '@/components/ViewCounter';
 
 const editUrl = (slug) =>
-  `https://github.com/leerob/leerob.io/edit/main/data/blog/${slug}.mdx`;
+  `https://github.com/adrai/blog/edit/main/data/blog/${slug}.mdx`;
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `https://leerob.io/blog/${slug}`
+    `http://github.com/adrai/blog/${slug}`
   )}`;
 
 export default function BlogLayout({ children, frontMatter }) {
   return (
     <Container
-      title={`${frontMatter.title} – Lee Robinson`}
+      title={`${frontMatter.title || frontMatter.name} – Lee Robinson`}
       description={frontMatter.summary}
       image={`https://leerob.io${frontMatter.image}`}
       date={new Date(frontMatter.publishedAt).toISOString()}
@@ -23,20 +23,20 @@ export default function BlogLayout({ children, frontMatter }) {
     >
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
-          {frontMatter.title}
+          {frontMatter.title || frontMatter.name}
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full mt-2">
           <div className="flex items-center">
-            <Image
+            {/* <Image
               alt="Lee Robinson"
               height={24}
               width={24}
               src="/avatar.jpg"
               className="rounded-full"
-            />
+            /> */}
             <p className="text-sm text-gray-700 dark:text-gray-300 ml-2">
               {frontMatter.by}
-              {'Lee Robinson / '}
+              {'A. R. / '}
               {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}
             </p>
           </div>
@@ -49,9 +49,9 @@ export default function BlogLayout({ children, frontMatter }) {
         <div className="prose dark:prose-dark max-w-none w-full">
           {children}
         </div>
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <Subscribe />
-        </div>
+        </div> */}
         <div className="text-sm text-gray-700 dark:text-gray-300">
           <a
             href={discussUrl(frontMatter.slug)}

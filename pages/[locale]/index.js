@@ -13,7 +13,7 @@ export default function Test({ code, frontMatter }) {
 
   return (
     <Container
-      title={frontMatter.name}
+      title={frontMatter.title || frontMatter.name}
       description="bla bla"
     >
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">

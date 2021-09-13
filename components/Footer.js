@@ -23,10 +23,16 @@ export default function Footer(props) {
   
   const getCorrectHref = (locale) => {
     let href = props.href || router.asPath
+    let pName = router.pathname
+    Object.keys(router.query).forEach((k) => {
+      if (k === 'locale') {
+        pName = pName.replace(`[${k}]`, locale)
+        return
+      }
+      pName = pName.replace(`[${k}]`, router.query[k])
+    })
     if (locale) {
-      href = props.href
-        ? `/${locale}${props.href}`
-        : router.pathname.replace('[locale]', locale)
+      href = props.href ? `/${locale}${props.href}` : pName
     }
     return href
   }
@@ -39,12 +45,12 @@ export default function Footer(props) {
           <Link href="/">
             <a className="text-gray-500 hover:text-gray-600 transition">Home</a>
           </Link>
-          {/* <Link href="/about">
+          <Link href="/blog">
             <a className="text-gray-500 hover:text-gray-600 transition">
-              About
+              Blog
             </a>
           </Link>
-          <Link href="/newsletter">
+          {/* <Link href="/newsletter">
             <a className="text-gray-500 hover:text-gray-600 transition">
               Newsletter
             </a>

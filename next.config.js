@@ -2,14 +2,9 @@
 
 module.exports = {
   // i18n,
-  experimental: { esmExternals: true },
   reactStrictMode: true,
   images: {
-    loader: 'imgix',
-    domains: [
-      'i.scdn.co', // Spotify Album Art
-      'pbs.twimg.com' // Twitter Profile Picture
-    ]
+    loader: 'imgix'
   },
   trailingSlash: true
 };
