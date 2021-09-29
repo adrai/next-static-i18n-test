@@ -30,4 +30,10 @@ function App({ Component, pageProps }) {
   );
 }
 
-export default appWithTranslation(App)
+const WrappedApp = appWithTranslation(App)
+
+// because we do not use the i18n feature of next.js
+export default function RouterEmulatedApp ({ ...rest }) {
+  rest.router.locale = 'en'
+  return <WrappedApp {...rest} />
+}
