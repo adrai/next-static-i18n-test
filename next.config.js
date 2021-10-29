@@ -3,8 +3,9 @@
 module.exports = {
   // i18n,
   reactStrictMode: true,
+  trailingSlash: true,
   images: {
-    loader: 'imgix'
-  },
-  trailingSlash: true
+    loader: 'imgix',
+    path: 'https://example.com',
+  }
 };
